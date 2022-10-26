@@ -45,7 +45,11 @@ public class SynchronizationHelper {
     }
 
     public void addSyncClient (SyncClient syncClient) {
-        synchronized (syncClientList) {
+        
+		/* ********OpenRefactory Warning********
+		 Synchronization should be on a private final field
+		*/
+		synchronized (syncClientList) {
             syncClientList.add(syncClient);
         }
     }
