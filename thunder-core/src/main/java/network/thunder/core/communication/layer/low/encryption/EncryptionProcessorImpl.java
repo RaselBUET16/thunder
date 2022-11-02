@@ -65,7 +65,7 @@ public class EncryptionProcessorImpl extends EncryptionProcessor {
     }
 
     private boolean shouldSendEncryptionKeyFirst () {
-        return !node.isServer;
+        return !node.getIsServer();
     }
 
     private void sendInitialMessageIfNotSent () {

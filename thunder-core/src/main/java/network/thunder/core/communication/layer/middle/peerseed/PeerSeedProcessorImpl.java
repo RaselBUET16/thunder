@@ -59,7 +59,7 @@ public class PeerSeedProcessorImpl extends PeerSeedProcessor {
     public void onLayerActive (MessageExecutor messageExecutor) {
         this.messageExecutor = messageExecutor;
         messageExecutor.sendNextLayerActive();
-        if (!node.isServer) {
+        if (!node.getIsServer()) {
             if (node.intent == ConnectionIntent.GET_IPS) {
                 messageExecutor.sendMessageUpwards(messageFactory.getPeerSeedGetMessage());
             }
@@ -83,7 +83,7 @@ public class PeerSeedProcessorImpl extends PeerSeedProcessor {
             dbHandler.insertIPObjects(P2PDataObject.generaliseList(list));
             fireIPEvents(list);
 
-            if (!node.isServer && node.intent == ConnectionIntent.GET_IPS) {
+            if (!node.getIsServer() && node.intent == ConnectionIntent.GET_IPS) {
                 node.resultCallback.execute(new PeerSeedResult());
                 messageExecutor.closeConnection();
             }

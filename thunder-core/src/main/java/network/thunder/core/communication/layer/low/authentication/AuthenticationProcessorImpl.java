@@ -67,7 +67,7 @@ public class AuthenticationProcessorImpl extends AuthenticationProcessor {
     }
 
     public boolean shouldSendAuthenticationFirst () {
-        return !node.isServer;
+        return !node.getIsServer();
     }
 
     public void sendAuthentication () {

@@ -310,7 +310,7 @@ public class ConnectionManagerImpl implements ConnectionManager, ConnectionRegis
 
     private ClientObject ipObjectToNode (PubkeyIPObject ipObject, ConnectionIntent intent) {
         ClientObject node = new ClientObject();
-        node.isServer = false;
+        node.setIsServer(false);
         node.intent = intent;
         node.nodeKey = new NodeKey(ipObject.pubkey);
         node.host = ipObject.hostname;

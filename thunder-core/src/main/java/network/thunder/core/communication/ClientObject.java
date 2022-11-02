@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientObject {
-    public boolean isServer;
+    private boolean isServer;
 
     public NodeKey nodeKey;
 
@@ -86,4 +86,12 @@ public class ClientObject {
                 ", isServer=" + isServer +
                 '}';
     }
+
+	public boolean getIsServer() {
+		return isServer;
+	}
+
+	public void setIsServer(boolean isServer) {
+		this.isServer = isServer;
+	}
 }

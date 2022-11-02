@@ -31,7 +31,7 @@ public class PipelineInitialiser extends ChannelInitializer<SocketChannel> {
 
         if (serverMode) {
             node = new ClientObject();
-            node.isServer = true;
+            node.setIsServer(true);
             node.nodeKey = null;
         }
 //        ch.pipeline().addLast(new DumpHexHandler());
