@@ -212,7 +212,35 @@ public class ScriptTools {
 
     public static Script getAnchorOutputScript (ECKey keyClient, ECKey keyServer) {
         List<byte[]> keyList = new ArrayList<>();
-        keyList.add(keyClient.getPubKey());
+        /* ********OpenRefactory Warning********
+		 Possible null pointer Dereference!
+		 Path: 
+			File: LNEstablishProcessorImpl.java, Line: 248
+				sendEstablishMessageA();
+				 Information about field keyClient (from class Channel) is passed through the method call. This later results into a null pointer dereference
+			File: LNEstablishProcessorImpl.java, Line: 381
+				establishProgress.channel.getAnchorTransactionServer(walletHelper);
+				 Information about field keyClient (from class Channel) is passed through the method call. This later results into a null pointer dereference
+			File: Channel.java, Line: 135
+				fillAnchorTransactionWithoutSignatures(walletHelper);
+				 Information about field keyClient (from class Channel) is passed through the method call. This later results into a null pointer dereference
+			File: Channel.java, Line: 161
+				Script anchorScriptServer=getAnchorScriptOutput();
+				 Information about field keyClient (from class Channel) is passed through the method call. This later results into a null pointer dereference
+			File: Channel.java, Line: 174
+				return ScriptTools.getAnchorOutputScriptP2SH(keyClient,keyServer);
+				 Information is passed through the method call via keyClient to the formal param keyClient of the method. This later results into a null pointer dereference.
+			File: ScriptTools.java, Line: 189
+				ECKey keyClient
+				Variable keyClient is declared as a formal parameter.
+			File: ScriptTools.java, Line: 190
+				return ScriptBuilder.createP2SHOutputScript(getAnchorOutputScript(keyClient,keyServer));
+				 Information is passed through the method call via keyClient to the formal param keyClient of the method. This later results into a null pointer dereference.
+			File: ScriptTools.java, Line: 181
+				keyList.add(keyClient.getPubKey());
+				keyClient is referenced in method invocation.
+		*/
+		keyList.add(keyClient.getPubKey());
         keyList.add(keyServer.getPubKey());
 
         keyList.sort(UnsignedBytes.lexicographicalComparator());
