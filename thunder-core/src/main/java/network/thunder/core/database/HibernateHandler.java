@@ -920,7 +920,11 @@ public class HibernateHandler implements DBHandler {
 
     @Override
     public NodeKey getSenderOfPayment (PaymentSecret paymentSecret) {
-        synchronized (payments) {
+        
+		/* ********OpenRefactory Warning********
+		 Synchronization should be on a private final field
+		*/
+		synchronized (payments) {
             for (PaymentWrapper payment : payments) {
                 if (payment.paymentData.secret.equals(paymentSecret)) {
                     return payment.sender;
