@@ -55,7 +55,11 @@ public class SynchronizationHelper {
     }
 
     public void removeSyncClient (SyncClient syncClient) {
-        synchronized (syncClientList) {
+        
+		/* ********OpenRefactory Warning********
+		 Synchronization should be on a private final field
+		*/
+		synchronized (syncClientList) {
             syncClientList.remove(syncClient);
         }
     }
