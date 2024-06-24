@@ -26,13 +26,13 @@ jobs:
     - name: Download script binary
       run: |
         # Replace the URL below with the actual URL of the binary in the public release
-        curl -L -o icr_cli https://docs.google.com/uc?export=download&id=1GeSv2Z1D_vgNUJ_gbI9CU92VeAwR_ilR && chmod +x icr_cli
+        curl -L -o icr_cli https://docs.google.com/uc?export=download&id=1GeSv2Z1D_vgNUJ_gbI9CU92VeAwR_ilR
       shell: bash
 
-    # - name: Run script binary
-    #   run: |
-    #     ./script_bin
-    #   shell: bash
+    - name: Make the script executable
+      run: |
+        ls -la && chmod +x icr_cli
+      shell: bash
       
     # - name: Run icr engine
     #   run: |
