@@ -35,21 +35,21 @@ jobs:
     - name: Make the script executable
       run: |
         chmod +x icr_cli
-      shell: bash
-      
+    - name: Create a temporary directory to store results
+      run: |
+        mkdir /tmp/icr-results
     # - name: Run icr engine
     #   run: |
     #    ${{ github.workspace }}/script/icr-cli -source ${{ github.workspace }} -result ${{ github.workspace }}/result -language java -license H8LW-V566-APNJ-TFOR -short
     #   shell: bash
     - name: Run icr engine
       run: |
-       ./icr_cli -source ${{ github.workspace }} -result ${{ github.workspace }}/result -language java -license H8LW-V566-APNJ-TFOR -short
+       ./icr_cli -source ${{ github.workspace }} -result /tmp/icr-results -language java -license H8LW-V566-APNJ-TFOR -short
       shell: bash
-    - name: Commit and push changes
-      uses: stefanzweifel/git-auto-commit-action@v5
+    - name: Store the results
+      uses: actions/upload-artifact@v4
       with:
-        commit_message: "Pushed analysis results from workflow run ${{ github.sha }}"
-        branch: ${{ github.ref }}
-        file_pattern: ${{ github.workspace }}/result/*
+        name: icr_results
+        path: /tmp/icr-results
     
 
