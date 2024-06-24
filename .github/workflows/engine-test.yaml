@@ -23,30 +23,33 @@ jobs:
     #        --mount type=bind,source=${{ github.workspace }}/result,target=/workspace/result \
     #        openrefactory/icr-java-engine:4.2.0
           
-    - name: Download script binary
+    # - name: Download script binary
+    #   run: |
+    #     # Replace the URL below with the actual URL of the binary in the public release
+    #     wget --no-check-certificate "https://docs.google.com/uc?export=download&id=1GeSv2Z1D_vgNUJ_gbI9CU92VeAwR_ilR" -O icr_cli
+    #   shell: bash
+    - name: Download executable from Google Drive
       run: |
-        # Replace the URL below with the actual URL of the binary in the public release
-        wget --no-check-certificate "https://docs.google.com/uc?export=download&id=1GeSv2Z1D_vgNUJ_gbI9CU92VeAwR_ilR" -O icr_cli
-      shell: bash
+        curl -L -o icr_cli "https://docs.google.com/uc?export=download&id=1GeSv2Z1D_vgNUJ_gbI9CU92VeAwR_ilR"
 
     - name: Make the script executable
       run: |
-        ls -la && chmod +x icr_cli && ls -la
-      shell: bash
-      
+        chmod +x icr_cli
+    - name: Create a temporary directory to store results
+      run: |
+        mkdir /tmp/icr-results
     # - name: Run icr engine
     #   run: |
     #    ${{ github.workspace }}/script/icr-cli -source ${{ github.workspace }} -result ${{ github.workspace }}/result -language java -license H8LW-V566-APNJ-TFOR -short
     #   shell: bash
     - name: Run icr engine
       run: |
-       ./icr_cli -source ${{ github.workspace }} -result ${{ github.workspace }}/result -language java -license H8LW-V566-APNJ-TFOR -short
+       ./icr_cli -source ${{ github.workspace }} -result /tmp/icr-results -language java -license H8LW-V566-APNJ-TFOR -short
       shell: bash
-    - name: Commit and push changes
-      uses: stefanzweifel/git-auto-commit-action@v5
+    - name: Store the results
+      uses: actions/upload-artifact@v4
       with:
-        commit_message: "Pushed analysis results from workflow run ${{ github.sha }}"
-        branch: ${{ github.ref }}
-        file_pattern: ${{ github.workspace }}/result/*
+        name: icr_results
+        path: /tmp/icr-results
     
 
