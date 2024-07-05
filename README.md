@@ -30,7 +30,7 @@ To learn more, visit  www.blockchain.com/thundesr skk
 ## Building
 
 ### Prerequisites
-
+ 
 You need
 ```
 JDK 1.8+
