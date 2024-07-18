@@ -46,7 +46,7 @@ public class Main extends Application {
 
     private StackPane uiStack;
     private Pane mainUI;
-    public MainController controller;
+    private MainController controller;
     private NotificationBarPane notificationBar;
     public Stage mainWindow;
 
@@ -275,5 +275,9 @@ public class Main extends Application {
 
 	public NotificationBarPane getNotificationBar() {
 		return notificationBar;
+	}
+
+	public MainController getController() {
+		return controller;
 	}
 }
