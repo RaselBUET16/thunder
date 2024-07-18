@@ -203,8 +203,8 @@ public class MainController {
 
         openChannel.textProperty().bind(model.openChannelButtonText);
 
-        thunderReceiveMoneyBtn.disableProperty().bind(model.sendReceiveButtonEnabled);
-        thunderSendMoneyOutBtn.disableProperty().bind(model.sendReceiveButtonEnabled);
+        thunderReceiveMoneyBtn.disableProperty().bind(model.getSendReceiveButtonEnabled());
+        thunderSendMoneyOutBtn.disableProperty().bind(model.getSendReceiveButtonEnabled());
 
         nodesList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<PubkeyIPObject>() {
             @Override

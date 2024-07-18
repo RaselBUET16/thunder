@@ -36,7 +36,7 @@ public class BitcoinUIModel {
     public ObservableList<Node> transactionsThunderRefunded = FXCollections.observableArrayList();
     public ObservableList<Node> transactionsThunderOpen = FXCollections.observableArrayList();
 
-    public BooleanProperty sendReceiveButtonEnabled = new SimpleBooleanProperty(true);
+    private BooleanProperty sendReceiveButtonEnabled = new SimpleBooleanProperty(true);
     public StringProperty openChannelButtonText = new SimpleStringProperty();
 
     private SimpleObjectProperty<Address> address = new SimpleObjectProperty<>();
@@ -183,5 +183,9 @@ public class BitcoinUIModel {
     public ReadOnlyObjectProperty<Coin> balanceProperty () {
         return balance;
     }
+
+	public BooleanProperty getSendReceiveButtonEnabled() {
+		return sendReceiveButtonEnabled;
+	}
 
 }
