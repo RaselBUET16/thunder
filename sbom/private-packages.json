@@ -1,0 +1,12 @@
+[
+    {
+        "name": "pkg:maven/com.example/consumer-project@1.0-SNAPSHOT?type=jar",
+        "source": "https://github.com/NurHossainOR/lifeguard_test",
+        "language": "JAVA"
+    },
+    {
+      "name": "pkg:maven/com.example/demo-project@1.0-SNAPSHOT?type=jar",
+      "source": "https://github.com/NurHossainOR/java-internal",
+      "language": "JAVA"
+    }
+  ]
